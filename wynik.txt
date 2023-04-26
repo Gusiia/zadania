@@ -1,0 +1,18 @@
+
+
+
+
+
+
+#def nwd(licznik_wynik, mianownik_wynik):
+#    while licznik_wynik!=mianownik_wynik:
+#if l
+
+
+#skrocony_licznik = licznik_wynik / nwd
+#skrocony_mianownik = mianownik_wynik / nwd
+
+#print("Suma wynosi: ", skrocony_licznik, "/", skrocony_mianownik)
+
+#Napisz program, który pomnoży dwa ułamki
+#która większa i większa zamienia na różnice mniejszej
