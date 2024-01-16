@@ -6,3 +6,57 @@
 3b 14 80
 4a 15 90
 4b 16 100
+
+class Stos:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return len(self.items) == 0
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.isEmpty():
+            return self.items.pop()
+        else:
+            raise IndexError("Stos jest pusty")
+
+    def peek(self):
+        if not self.isEmpty():
+            return self.items[-1]
+        else:
+            raise IndexError("Stos jest pusty")
+
+    def size(self):
+        return len(self.items)
+
+
+def oblicz_wyrazenie(onp):
+    stos = Stos()
+    operators = set(['+', '-', '*', '/'])
+
+    for token in onp:
+        if token not in operators:
+            stos.push(float(token))
+        else:
+            operand2 = stos.pop()
+            operand1 = stos.pop()
+
+            if token == '+':
+                stos.push(operand1 + operand2)
+            elif token == '-':
+                stos.push(operand1 - operand2)
+            elif token == '*':
+                stos.push(operand1 * operand2)
+            elif token == '/':
+                stos.push(operand1 / operand2)
+
+    return stos.pop()
+
+
+# Przykładowe użycie
+wyrazenie_onp = ['3', '4', '+', '2', '*']
+wynik = oblicz_wyrazenie(wyrazenie_onp)
+print(f"Wynik: {wynik}")
