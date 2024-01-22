@@ -5,3 +5,52 @@
 # #####
 #     #
 ##### #
+
+class Stos:
+    def __init__(self):
+        self.items = []
+
+    def empty(self):
+        return len(self.items) == 0
+
+    def top(self):
+        if not self.empty():
+            return self.items[-1]
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.empty():
+            return self.items.pop()
+
+def is_operator(symbol):
+    operators = {'+', '-', '*', '/'}
+    return symbol in operators
+
+def zamien_wyrazenie(wyrazenie):
+    stos = Stos()
+    wynik = ""
+
+    for symbol in wyrazenie:
+        if symbol.isalnum() or symbol in {'_', '.'}:  # Alternatywa dla isdigit i isalpha
+            wynik += symbol
+        elif symbol == '(':
+            stos.push(symbol)
+        elif symbol == ')':
+            while not stos.empty() and stos.top() != '(':
+                wynik += stos.pop()
+            stos.pop()
+        elif is_operator(symbol):
+            while not stos.empty() and is_operator(stos.top()):
+                wynik += stos.pop()
+            stos.push(symbol)
+
+    while not stos.empty():
+        wynik += stos.pop()
+
+    return wynik
+
+wyrazenie_wejsciowe = "(a+b) * c"
+wyrazenie_wyjsciowe = zamien_wyrazenie(wyrazenie_wejsciowe)
+print(wyrazenie_wyjsciowe)
