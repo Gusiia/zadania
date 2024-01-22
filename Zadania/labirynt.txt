@@ -5,7 +5,10 @@
 # #####
 #     #
 ##### #
-
+def is_alphanumeric(symbol):
+    alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    digits = '0123456789'
+    return symbol in alphabet or symbol in digits
 class Stos:
     def __init__(self):
         self.items = []
