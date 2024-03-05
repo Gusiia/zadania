@@ -1,1 +1,30 @@
 10 21 3 7 10 31 4
+
+
+
+plik = open("instrukcje.txt")
+
+
+
+import string
+print(string.ascii_lowercase)
+
+napis = ""
+for element in plik:
+    polecenie, znak = element.split()
+    if polecenie == "DOPISZ":
+        napis += znak
+    if polecenie == "ZMIEN":
+        napis = napis[:-1] + znak
+    if polecenie == "USUN":
+        napis = napis[:-1]
+    if polecenie == "PRZESUN":
+        if znak == "Z":
+            nowy_znak = "A"
+        else:
+            kod_ascii = ord(znak)
+            nowy_znak = chr(kod_ascii + 1)
+
+        napis = napis.replace(znak, nowy_znak, 1)
+
+print(napis)
